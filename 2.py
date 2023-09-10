@@ -45,7 +45,7 @@ from telegram.ext import Application, CommandHandler, ContextTypes, MessageHandl
 from telegram.ext import Updater
 
 
-config = pdfkit.configuration(wkhtmltopdf="D:\wkhtmltopdf\\bin\\wkhtmltopdf.exe")
+config = pdfkit.configuration()
 
 
 
