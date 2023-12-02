@@ -77,9 +77,11 @@ async def callback_minute(context: ContextTypes.DEFAULT_TYPE):
 
     tabula.convert_into('listaPrecios.pdf', "antiguo.csv", output_format="csv", pages='all')
     antiguo=pd.read_csv('antiguo.csv',header=[0],encoding ="ISO-8859-1")
-
-    result = nuevo[~(nuevo.SKU.isin(antiguo.SKU))]
-    result2 = antiguo[~(antiguo.SKU.isin(nuevo.SKU))]
+    print(antiguo.head())
+    antiguo['skuprecio'] = antiguo.SKU + antiguo['Precio Unitario\rc/Iva'] 
+    nuevo['skuprecio'] = nuevo.SKU + nuevo['Precio Unitario\rc/Iva'] 
+    result = nuevo[~(nuevo.skuprecio.isin(antiguo.skuprecio))]
+    result2 = antiguo[~(antiguo.skuprecio.isin(nuevo.skuprecio))]
 
     print(len(result))
     result.to_html("test.html")
